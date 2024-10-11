@@ -49,4 +49,7 @@ class SyncUnit:
     def fps(self):
         if len(self.msg_gap_list) == 0:
             return 0.0
-        return 1000.0 / float(np.mean(self.msg_gap_list))
+        gap = float(np.mean(self.msg_gap_list))
+        if np.abs(gap) < 1e-5:
+            gap = 1e-5
+        return 1000.0 / gap
